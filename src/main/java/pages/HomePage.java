@@ -19,8 +19,6 @@ public class HomePage extends BasePage
     @FindBy(xpath = "//a[text()= 'Log in']")
     WebElement btnLogin;
 
-
-
     public void clickBtnLogin()
     {
         btnLogin.click();
