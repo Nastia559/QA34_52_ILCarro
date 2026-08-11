@@ -20,7 +20,10 @@ public class LoginPage extends BasePage {
     WebElement btnYalla;
     @FindBy(xpath = "//button[normalize-space()='Ok']")
     WebElement btnOk;
-
+    @FindBy(xpath = "//h2[@class='message']")
+    WebElement errorMessage;
+    @FindBy(xpath = "//button[normalize-space()='Ok']")
+    WebElement btnOk1;
 
     public void typeLoginForm(UserLombok user) {
         inputEmail.sendKeys(user.getUsername());
@@ -33,6 +36,18 @@ public class LoginPage extends BasePage {
 
     public void clickBtnOk() {
         btnOk.click();
+    }
+
+    public boolean isLoginPageDisplayed() {
+        return inputEmail.isDisplayed();
+    }
+
+    public boolean isErrorMessageDisplayed() {
+        return errorMessage.isDisplayed();
+    }
+
+    public void clickBtnOk1() {
+        btnOk1.click();
     }
 }
 
