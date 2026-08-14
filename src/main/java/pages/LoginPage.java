@@ -18,6 +18,10 @@ public class LoginPage extends BasePage {
     WebElement inputPassword;
     @FindBy(xpath = "//button[contains(text(),'Y’alla')]")
     WebElement btnYalla;
+    @FindBy(xpath = "//h1[text()='Logged in']")
+    WebElement popUpSuccessLogin;
+    @FindBy(xpath = "//h1[text()='Login failed']")
+    WebElement popUpLoginFailed;
     @FindBy(xpath = "//button[normalize-space()='Ok']")
     WebElement btnOk;
     @FindBy(xpath = "//h2[@class='message']")
@@ -48,6 +52,16 @@ public class LoginPage extends BasePage {
 
     public void clickBtnOk1() {
         btnOk1.click();
+    }
+    public boolean isPopUpSuccessLoginDisplayed() {
+        return isElementDisplayed(popUpSuccessLogin);
+    }
+
+    public boolean isPopUpLoginFailedDisplayed() {
+        return isElementDisplayed(popUpLoginFailed);
+    }
+    public boolean isBtnYallaEnabled() {
+        return btnYalla.isEnabled();
     }
 }
 

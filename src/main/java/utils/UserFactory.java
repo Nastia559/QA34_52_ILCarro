@@ -13,4 +13,13 @@ public class UserFactory {
                 .build();
         return user;
     }
+    public static UserLombok positiveUser1(){
+        UserLombok user = UserLombok.builder()
+                .username(faker.internet().emailAddress())
+                .password("Qwerty156!")
+                .build();
+        return user;
+    }
 }
+
+
