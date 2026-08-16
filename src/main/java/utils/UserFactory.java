@@ -11,19 +11,17 @@ public class UserFactory {
     public static UserLombok positiveUser(){
         UserLombok user = UserLombok.builder()
                 .username(faker.internet().emailAddress())
-                .password("Qwerty156!")
-//                .password(getProperty("base.properties", "password"))
+                .password(getProperty("base.properties", "password"))
                 .build();
         return user;
     }
 
-    public static UserLombok registrationUser(){
+    public static UserLombok positiveRegistrationUser(){
         UserLombok user = UserLombok.builder()
                 .firstName(faker.name().firstName())
                 .lastName(faker.name().lastName())
                 .username(faker.internet().emailAddress())
-//                .password("Qwerty156!")
-                .password(getProperty("base.properties", "password"))
+                .password(getProperty("base.properties", "password_for_registration"))
                 .build();
         return user;
     }
