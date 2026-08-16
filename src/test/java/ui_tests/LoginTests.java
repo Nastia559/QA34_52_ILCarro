@@ -110,7 +110,7 @@ public class LoginTests extends AppManager {
                 .build();
         loginPage.typeLoginForm(user);
         loginPage.clickBtnYalla();
-        softAssert.assertTrue(loginPage.isTextInErrorPresent("Email is required"),
+        Assert.assertTrue(loginPage.isTextInErrorPresent("Email is required"),
                 "validate message: Email is required");
     }
 
@@ -122,7 +122,7 @@ public class LoginTests extends AppManager {
                 .build();
         loginPage.typeLoginForm(user);
         loginPage.clickBtnYalla();
-        softAssert.assertTrue(loginPage.isTextInErrorPresent("Password is required"),
+        Assert.assertTrue(loginPage.isTextInErrorPresent("Password is required"),
                 "validate message: Password is required");
     }
 }
