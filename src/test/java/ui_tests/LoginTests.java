@@ -1,5 +1,6 @@
 package ui_tests;
 
+import data_providers.UserDataProvider;
 import dto.UserLombok;
 import manager.AppManager;
 import org.testng.Assert;
