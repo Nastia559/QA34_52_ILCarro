@@ -4,6 +4,7 @@ import dto.UserLombok;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
@@ -28,6 +29,9 @@ public class RegistrationPage extends BasePage{
     WebElement btnYalla;
     @FindBy(xpath = "//input[@id='terms-of-use']")
     WebElement checkBoxTermsOfUse;
+    @FindBy(xpath = "//label[@for='terms-of-use']")
+    WebElement checkBoxLabel;
+
 
     public void typeRegistrationForm(UserLombok user){
         inputFirstName.sendKeys(user.getFirstName());
@@ -47,5 +51,14 @@ public class RegistrationPage extends BasePage{
     public void clickCheckboxTermsOfUse() {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click();", checkBoxTermsOfUse);
+    }
+
+    public void clickCheckBoxWithActions(){
+        int x = checkBoxLabel.getSize().getWidth();
+        int y = checkBoxLabel.getSize().getHeight();
+        System.out.println(x + "X" + y);
+        Actions actions = new Actions(driver);
+        actions.moveToElement(checkBoxLabel, - x /10*3, y / 4)
+                .click().perform();
     }
 }

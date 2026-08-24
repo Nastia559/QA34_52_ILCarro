@@ -1,7 +1,10 @@
 package ui_tests;
 
+import ch.qos.logback.classic.Logger;
 import dto.UserLombok;
+import lombok.extern.flogger.Flogger;
 import manager.AppManager;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -10,6 +13,7 @@ import pages.PopUpPage;
 import pages.RegistrationPage;
 import utils.UserFactory;
 
+
 import static utils.UserFactory.*;
 
 public class RegistrationTests extends AppManager {
@@ -17,6 +21,7 @@ public class RegistrationTests extends AppManager {
 
     @BeforeMethod
     public void goToRegistrationPage(){
+        logger.info("Start registration test");
         new HomePage(getDriver()).clickBtnSignUp();
         registrationPage = new RegistrationPage(getDriver());
     }
@@ -26,6 +31,16 @@ public class RegistrationTests extends AppManager {
         UserLombok user = positiveRegistrationUser();
         registrationPage.typeRegistrationForm(user);
         registrationPage.clickCheckboxTermsOfUse();
+        registrationPage.clickBtnYalla();
+        Assert.assertTrue(new PopUpPage(getDriver())
+                .isTextInPopUpMessagePresent("You are logged in success"));
+    }
+
+    @Test
+    public void registrationPositiveWithActionsTest(){
+        UserLombok user = positiveRegistrationUser();
+        registrationPage.typeRegistrationForm(user);
+        registrationPage.clickCheckBoxWithActions();
         registrationPage.clickBtnYalla();
         Assert.assertTrue(new PopUpPage(getDriver())
                 .isTextInPopUpMessagePresent("You are logged in success"));
