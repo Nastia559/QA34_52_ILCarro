@@ -43,49 +43,49 @@ public class LetTheCarWork extends BasePage{
         linkLetTheCarWork.click();
     }
 
-    public void inputAddress(){
+    public void inputAddress(String address){
         inputAddress.click();
-        inputAddress.sendKeys("Ashkelon");
+        inputAddress.sendKeys(address);
     }
 
-    public void inputManufacture(){
+    public void inputManufacture(String manufacture){
         inputManufacture.click();
-        inputManufacture.sendKeys("BMW");
+        inputManufacture.sendKeys(manufacture);
     }
 
-    public void inputModel(){
+    public void inputModel(String model){
         inputModel.click();
-        inputModel.sendKeys("X5");
+        inputModel.sendKeys(model);
     }
 
-    public void inputYear(){
+    public void inputYear(int year){
         inputYear.click();
-        inputYear.sendKeys("2024");
+        inputYear.sendKeys(String.valueOf(year));
     }
 
-    public void inputFuel(){
+    public void inputFuel(String fuel){
         Select select = new Select(inputFuel);
-        select.selectByValue("Hybrid");
+        select.selectByValue(fuel);
     }
 
-    public void inputSeats(){
+    public void inputSeats(int seats){
         inputSeats.click();
-        inputSeats.sendKeys("4");
+        inputSeats.sendKeys(String.valueOf(seats));
     }
 
-    public void inputCarClass(){
+    public void inputCarClass(String carClass){
          inputCarClass.click();
-         inputCarClass.sendKeys("C");
+         inputCarClass.sendKeys(carClass);
     }
 
-    public void inputCarRegistrationNumber(){
+    public void inputCarRegistrationNumber(String registrationNumber){
         inputCarRegistrationNumber.click();
-        inputCarRegistrationNumber.sendKeys("1234567");
+        inputCarRegistrationNumber.sendKeys(registrationNumber);
     }
 
-    public void inputPrice(){
+    public void inputPrice(float price){
         inputPrice.click();
-        inputPrice.sendKeys("200");
+        inputPrice.sendKeys(String.valueOf(price));
     }
 
 

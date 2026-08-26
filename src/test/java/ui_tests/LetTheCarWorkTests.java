@@ -35,15 +35,15 @@ public class LetTheCarWorkTests extends AppManager {
     public void positiveAddCar(){
         logger.info("Adding car");
         letTheCarWork.clickLinkLetTheCarWork();
-        letTheCarWork.inputAddress();
-        letTheCarWork.inputManufacture();
-        letTheCarWork.inputModel();
-        letTheCarWork.inputYear();
-        letTheCarWork.inputFuel();
-        letTheCarWork.inputSeats();
-        letTheCarWork.inputCarClass();
-        letTheCarWork.inputCarRegistrationNumber();
-        letTheCarWork.inputPrice();
+        letTheCarWork.inputAddress("Ashkelon");
+        letTheCarWork.inputManufacture("BMW");
+        letTheCarWork.inputModel("X5");
+        letTheCarWork.inputYear(2024);
+        letTheCarWork.inputFuel("Hybrid");
+        letTheCarWork.inputSeats(4);
+        letTheCarWork.inputCarClass("C");
+        letTheCarWork.inputCarRegistrationNumber("L1234567");
+        letTheCarWork.inputPrice(200);
         letTheCarWork.clickBtnSubmitWithJS();
         Assert.assertTrue(letTheCarWork.isTextInErrorPresent("Car adding failed"),
                 "validate message: Car adding failed");
