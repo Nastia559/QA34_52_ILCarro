@@ -1,5 +1,6 @@
 package pages;
 
+import dto.Car;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,8 +9,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.ui.Select;
 
-public class LetTheCarWork extends BasePage{
-    public LetTheCarWork(WebDriver driver) {
+public class LetTheCarWorkPage extends BasePage{
+    public LetTheCarWorkPage(WebDriver driver) {
         PageFactory.initElements(new AjaxElementLocatorFactory
                 (driver, 10), this);
     }
@@ -34,10 +35,25 @@ public class LetTheCarWork extends BasePage{
     WebElement inputCarRegistrationNumber;
     @FindBy(id = "price")
     WebElement inputPrice;
+    @FindBy(xpath = "//textarea[@id='about']")
+    WebElement textAbout;
     @FindBy(xpath = "//button[@type='submit']")
     WebElement btnSubmit;
     @FindBy(xpath = "//mat-dialog-container//h1[@class='title']")
     WebElement errorMessage;
+
+    public void typeAddNewCarForm(Car car){
+        inputAddress.sendKeys(car.getCity());
+        inputManufacture.sendKeys(car.getManufacture());
+        inputModel.sendKeys(car.getModel());
+        inputYear.sendKeys(car.getYear());
+        inputFuel.sendKeys(car.getFuel());
+        inputSeats.sendKeys(String.valueOf(car.getSeats()));
+        inputCarClass.sendKeys(car.getCarClass());
+        inputCarRegistrationNumber.sendKeys(car.getCarClass());
+        inputPrice.sendKeys(String.valueOf(car.getPricePerDay()));
+        textAbout.sendKeys(car.getAbout());
+    }
 
     public void clickLinkLetTheCarWork(){
         linkLetTheCarWork.click();
@@ -58,9 +74,9 @@ public class LetTheCarWork extends BasePage{
         inputModel.sendKeys(model);
     }
 
-    public void inputYear(int year){
+    public void inputYear(String year){
         inputYear.click();
-        inputYear.sendKeys(String.valueOf(year));
+        inputYear.sendKeys(year);
     }
 
     public void inputFuel(String fuel){
@@ -68,7 +84,7 @@ public class LetTheCarWork extends BasePage{
         select.selectByValue(fuel);
     }
 
-    public void inputSeats(int seats){
+    public void inputSeats(Integer seats){
         inputSeats.click();
         inputSeats.sendKeys(String.valueOf(seats));
     }
@@ -83,7 +99,7 @@ public class LetTheCarWork extends BasePage{
         inputCarRegistrationNumber.sendKeys(registrationNumber);
     }
 
-    public void inputPrice(float price){
+    public void inputPrice(Double price){
         inputPrice.click();
         inputPrice.sendKeys(String.valueOf(price));
     }

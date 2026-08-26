@@ -31,9 +31,6 @@ public class RegistrationPage extends BasePage{
     WebElement checkBoxTermsOfUse;
     @FindBy(xpath = "//label[@for='terms-of-use']")
     WebElement checkBoxLabel;
-    @FindBy(xpath = "//button[normalize-space()='Ok']")
-    WebElement btnOk;
-
 
     public void typeRegistrationForm(UserLombok user){
         inputFirstName.sendKeys(user.getFirstName());
@@ -62,9 +59,5 @@ public class RegistrationPage extends BasePage{
         Actions actions = new Actions(driver);
         actions.moveToElement(checkBoxLabel, - x /10*3, y / 4)
                 .click().perform();
-    }
-
-    public void clickBtnOk(){
-        btnOk.click();
     }
 }
