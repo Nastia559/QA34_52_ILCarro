@@ -16,7 +16,7 @@ import static utils.CarFactory.*;
 import static utils.PropertiesReader.getProperty;
 
 
-public class LetTheCarWorkPageTests extends AppManager {
+public class AddNewCarTests extends AppManager {
     LoginPage loginPage;
     LetTheCarWorkPage letTheCarWorkPage;
 
@@ -42,9 +42,10 @@ public class LetTheCarWorkPageTests extends AppManager {
         Car car = positiveCar();
         System.out.println(car);
         letTheCarWorkPage.typeAddNewCarForm(car);
+        letTheCarWorkPage.downloadImage("cat1.jpg");
         letTheCarWorkPage.clickBtnSubmitWithJS();
-        Assert.assertTrue(letTheCarWorkPage.isTextInErrorPresent("Car adding failed"),
-                "validate message: Car adding failed");
+        Assert.assertTrue(new PopUpPage(getDriver())
+                .isTextInPopUpMessagePresent("{\"city\":\"must not be blank\"}"));
     }
 
     @Test
@@ -64,4 +65,11 @@ public class LetTheCarWorkPageTests extends AppManager {
         Assert.assertTrue(letTheCarWorkPage.isTextInErrorPresent("Car adding failed"),
                 "validate message: Car adding failed");
     }
+
+    // HW. Negative Tests
+    // 1. Only click btn Submit (без заполнения)
+    // 2. click all fields and btnSubmit
+    // 3. leave one field blank and other fields type with valid data
+    // 4. wrong year
+
 }
