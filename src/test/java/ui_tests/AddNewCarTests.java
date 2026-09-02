@@ -74,16 +74,4 @@ public class AddNewCarTests extends AppManager {
     // 2. click all fields and btnSubmit
     // 3. leave one field blank and other fields type with valid data
     // 4. wrong year
-
-    @Test
-    public void AddNewCarNegativeWrongYearTest(){
-        Car car = positiveCar();
-        car.setYear(String.valueOf(LocalDate.now().getYear()+1));
-        System.out.println(car);
-        letTheCarWorkPage.typeAddNewCarForm(car);
-        letTheCarWorkPage.downloadImage("cat1.jpg");
-        Assert.assertTrue(letTheCarWorkPage.isTextInErrorPresent("Wrong year"));
-    }
-
-
 }

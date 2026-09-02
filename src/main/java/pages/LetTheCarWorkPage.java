@@ -126,7 +126,7 @@ public class LetTheCarWorkPage extends BasePage{
 
     public void clickBtnSubmitWithJS() {
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("document.querySelector(\"button[type='submit']\")" +
+        js.executeScript("document.querySelector('button[type='submit']')" +
                         ".removeAttribute('disabled');");
         btnSubmit.click();
     }
