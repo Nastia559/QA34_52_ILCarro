@@ -1,14 +1,17 @@
 package ui_tests;
 
 import manager.AppManager;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 import pages.HomePage;
 
 import java.time.LocalDate;
 
 public class SearchCarTests extends AppManager {
     HomePage homePage;
+    SoftAssert softAssert = new SoftAssert();
 
     @BeforeMethod
     public void openHomePage(){
@@ -22,6 +25,54 @@ public class SearchCarTests extends AppManager {
         LocalDate startDate = LocalDate.now().plusDays(2);
         LocalDate endDate = LocalDate.now().plusDays(8);
         homePage.typeSearchForm(city, startDate, endDate);
+        homePage.clickBtnSubmitWithJS();
+        Assert.assertTrue(homePage.isUrlContainsText("results"));
         }
+
+    @Test
+    public void searchCarNegativeSameStartAndDatesTest(){
+        String city = "Haifa";
+        LocalDate startDate = LocalDate.now().plusDays(2);
+        LocalDate endDate = startDate;
+        homePage.typeSearchForm(city, startDate, endDate);
+        homePage.clickBtnSubmitWithJS();
+        Assert.assertTrue(homePage.isTextInErrorPresent
+                ("You can't book car for less than a day"));
+    }
+
+    @Test
+    public void searchCarNegativeMoreOneYearTest(){
+        String city = "Haifa";
+        LocalDate startDate = LocalDate.now().plusDays(2);
+        LocalDate endDate = LocalDate.now().plusYears(1).plusDays(1);
+        homePage.typeSearchForm(city, startDate, endDate);
+        homePage.clickBtnSubmitWithJS();
+        Assert.assertTrue(homePage.isTextInErrorPresent
+                ("You can't pick date after one year"));
+    }
+
+    @Test
+    public void searchCarNegativeStartDateAfterEndDateTest(){
+        String city = "Haifa";
+        LocalDate startDate = LocalDate.now().plusYears(1).plusDays(1);
+        LocalDate endDate = LocalDate.now().plusDays(1);
+        homePage.typeSearchForm(city, startDate, endDate);
+        homePage.clickBtnSubmitWithJS();
+        Assert.assertTrue(homePage.isTextInErrorPresent
+                ("Second date must be after first date"));
+        Assert.assertTrue(homePage.isTextInErrorPresent
+                ("You can't book car for less than a day"));
+        softAssert.assertAll();
+    }
+
+    @Test
+    public void searchCarWithCalendarPositiveTest(){
+        String city = "Haifa";
+        LocalDate startDate = LocalDate.now().plusDays(2);
+        LocalDate endDate = LocalDate.now().plusDays(8);
+        homePage.typeSearchFormWithCalendar(city, startDate, endDate);
+        homePage.clickBtnSubmitWithJS();
+        Assert.assertTrue(homePage.isUrlContainsText("results"));
+    }
     }
 

@@ -23,7 +23,7 @@ public class AddNewCarTests extends AppManager {
     LoginPage loginPage;
     LetTheCarWorkPage letTheCarWorkPage;
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void goToLetTheCarWorkPage() {
 //        new HomePage(getDriver()).clickBtnLogin();
 //        loginPage = new LoginPage(getDriver());
@@ -51,7 +51,7 @@ public class AddNewCarTests extends AppManager {
                 .isTextInPopUpMessagePresent("{\"city\":\"must not be blank\"}"));
     }
 
-    @Test
+    @Test(groups = {"smoke", "regress", "user", "positive"})
     public void positiveAddCarTest(){
         logger.info("Adding car");
         letTheCarWorkPage.clickLinkLetTheCarWork();

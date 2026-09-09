@@ -1,0 +1,4 @@
+./gradlew clean     // очистка отчета
+./gradlew clean test   // очистка теста и запуск тестов
+./gradlew clean qa
+./gradlew clean scope

@@ -21,14 +21,14 @@ import static utils.UserFactory.*;
 public class RegistrationTests extends AppManager {
     RegistrationPage registrationPage;
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void goToRegistrationPage(){
         logger.info("Start registration test");
         new HomePage(getDriver()).clickBtnSignUp();
         registrationPage = new RegistrationPage(getDriver());
     }
 
-    @Test
+    @Test(groups = {"smoke", "regress", "user", "positive"})
     public void registrationPositiveWithJSTest(){
         UserLombok user = positiveRegistrationUser();
         registrationPage.typeRegistrationForm(user);
@@ -57,6 +57,4 @@ public class RegistrationTests extends AppManager {
         Assert.assertTrue(registrationPage.isTextInErrorPresent("Password must contain 1 uppercase letter," +
                 " 1 lowercase letter, 1 number and one special symbol of [@$#^&*!]"));
     }
-
-
 }
