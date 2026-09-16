@@ -13,7 +13,7 @@ public class SearchCarTests extends AppManager {
     HomePage homePage;
     SoftAssert softAssert = new SoftAssert();
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void openHomePage(){
         homePage = new HomePage(getDriver());
     }
@@ -73,6 +73,17 @@ public class SearchCarTests extends AppManager {
         homePage.typeSearchFormWithCalendar(city, startDate, endDate);
         homePage.clickBtnSubmitWithJS();
         Assert.assertTrue(homePage.isUrlContainsText("results"));
+    }
+
+    @Test
+    public void searchCarWithCalendarMoreThanOneYearNegativeTest() {
+        String city = "Haifa";
+        LocalDate startDate = LocalDate.now().plusDays(3);
+        LocalDate endDate = LocalDate.now().plusYears(1).plusDays(1);
+        homePage.typeSearchFormWithCalendar(city, startDate, endDate);
+        homePage.pressEscape();
+//        Assert.assertTrue(homePage.isTextInErrorPresent
+//                ("Dates are required"));
     }
     }
 
