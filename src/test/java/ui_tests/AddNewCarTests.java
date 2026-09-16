@@ -40,7 +40,7 @@ public class AddNewCarTests extends AppManager {
                 .clickHeaderButtons(HeaderMenu.LET_THE_CAR_WORK);
     }
 
-    @Test
+    @Test(groups = "car")
     public  void addNewCarPositiveTest(){
         Car car = positiveCar();
         System.out.println(car);
